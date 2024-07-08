@@ -1,52 +1,83 @@
-let nombre;
-let apellido;
-let email;
-let comentarios;
 
-function enviarOpinion(){
-    let formularioValido = true;
-    let emailValido = true
-    let nombre= document.getElementById("nombre").value;
-    if (nombre == ""){
-        formularioValido = false;
-    }
-    let apellido= document.getElementById("apellido").value;
-    if (apellido == ""){
-        formularioValido = false;
-    }
+const msj = document.querySelector("#textarea");
+const btnEncriptar = document.querySelector("#encriptar"); 
+const btnDesencriptar = document.querySelector("#desencriptar");
+const btnCopiar = document.querySelector("#copiar"); 
+const msjFinal = document.querySelector("#resultado"); 
 
-    let email= document.getElementById("email").value;
-    if (email == ""){
-        formularioValido = false;
-    } else {
-        emailValido = validarEmail(email)
-        if(emailValido == false) {
-            formularioValido = false;
-        }
-    }
-    
-    let comentarios= document.getElementById("comentarios").value;
-    if (comentarios == ""){
-        formularioValido = false;
-    }
-    if (formularioValido == true){
-        alert ("Gracias " + nombre + " tomaremos en cuenta tu opinión ") 
-        document.getElementById("nombre").value = ""
-        document.getElementById("apellido").value=""
-        document.getElementById("comentarios").value=""
-        document.getElementById("email").value=""
-        
-    } else {
-        alert ("Por favor complete todos los campos")
-        console.log("Valido:", emailValido)
-        if (emailValido == false) {
-            alert ("Formato de email incorrecto")
-        }
-    }
-}
+const msjEncriptar = txt => {
+  switch (txt) {
+    case 'a':
+      return 'ia';
+    case 'e':
+      return 'enter';
+    case 'i':
+      return 'imes';
+    case 'o':
+      return 'ober';
+    case 'u':
+      return 'ufat';
+    default:
+      return txt;
+  }
+};
 
-function validarEmail(email){
-	
-	// Define our regular expression.
-	var expresionRegular =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-    return expresionRegular.test(email);
+const encriptar = txt => {
+  const msjEncriptado = txt.replace(/a|e|i|o|u/g, msjEncriptar); 
+  toggleElementVisibility('ocultar', false); 
+  toggleElementVisibility('resultado', true);
+  toggleElementVisibility('copiar', true); 
+  return msjEncriptado;
+};
+
+const msjDesencriptar = txt => {
+  switch (txt) {
+    case 'ia':
+      return 'a';
+    case 'enter':
+      return 'e';
+    case 'imes':
+      return 'i';
+    case 'ober':
+      return 'o';
+    case 'ufat':
+      return 'u';
+    default:
+      return txt;
+  }
+};
+
+const desencriptar = txt => {
+  const msjDesencriptado = txt.replace(/ia|enter|imes|ober|ufat/g, msjDesencriptar);
+  return msjDesencriptado;
+};
+btnEncriptar.addEventListener("click", event => {
+  event.preventDefault();
+  const txt = msj.value;
+  msjFinal.value = ""; 
+  const msjSeguro = encriptar(txt);
+  msjFinal.value = msjSeguro;
+});
+
+btnDesencriptar.addEventListener("click", event => {
+  event.preventDefault();
+  const txt = msj.value;
+  msjFinal.value = ""; 
+  const msjSeguro = desencriptar(txt);
+  msjFinal.value = msjSeguro;
+});
+
+btnCopiar.addEventListener("click", event => {
+  event.preventDefault();
+  msjFinal.select();
+  navigator.clipboard.writeText(msjFinal.value);
+});
+
+const toggleElementVisibility = (elementId, shouldShow) => {
+  const element = document.getElementById(elementId);
+  if (shouldShow) {
+    element.style.display = 'block';
+  } else {
+    element.style.display = 'none';
+  }
+};
