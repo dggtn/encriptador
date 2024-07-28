@@ -14,31 +14,27 @@
 </header>
     <main>
         <section class="encriptador">
-            <textarea class="encriptar" placeholder="Ingrese el texto aquí"></textarea>
+            <textarea class="encriptar" id="textarea" placeholder="Ingrese el texto aquí"></textarea>
             <div class="encriptador-escribeTextoAqui">
             </div>
             <div>
                 <p class="Indicacion">Solo letras minúsculas y sin acentos</p>
             </div>
             <div class="contenedor">
-                <button type="submit" class="btn-encriptar">Encriptar</button>
-                <button type="submit" class="btn-desencriptar">Desencriptar</button>
+                <button type="submit" id="encriptar" class="btn-encriptar">Encriptar</button>
+                <button type="submit" id="desencriptar" class="btn-desencriptar">Desencriptar</button>
             </div>
         </section>
         <section class="card">
-           <div class="card-muneco">
+           <div id="ocultar"class="card-muneco">
                 <img src="./imagenes/muneco.png" alt="Imagen Muñeco" class="img-muñeco">
                 <p class="texto-uno">Ningún mensaje fue encontrado</p>
                 <p class="texto-dos">Ingrese el texto que deseas encriptar o desencriptar</p>
            </div>
-           <textarea type="mensaje" class="evaluar" readonly></textarea>
-           <button type="submit" class="btn-copiar">Copiar</button>
+           <textarea id="resultado"type="mensaje" class="evaluar" readonly></textarea>
+           <button type="submit" id="copiar"class="btn-copiar">Copiar</button>
          </section>  
     </main>
-
-
-
 </body>
-<script type="js" src="./js/encriptador.js"></script>
-
+<script src="./js/encriptador.js"></script>
 </html>

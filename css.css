@@ -212,7 +212,6 @@ main{
     position: absolute;
     bottom: 0;
     left: 0;
-    visibility: hidden;
     padding: 24px;
     font-size: 16px;
     line-height: 19px;
@@ -221,6 +220,7 @@ main{
     border: 1px solid var(--Dark-Blue);
     border-radius: 20px;
     cursor: pointer;
+    display:none;
 }
 
 .btn-encriptar:hover,
@@ -312,7 +312,7 @@ main{
         width: 90%;
     }
     }
-}
+
 
 
 
